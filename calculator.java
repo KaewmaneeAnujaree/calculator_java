@@ -8,7 +8,8 @@ public class calculator extends JFrame {
       private Font mFont = new Font("Tahoma", Font.PLAIN, 18);
       private JTextField mTextValue = new JTextField("0", 15);
       private NumberFormat mFormat = NumberFormat.getNumberInstance();
-
+      private boolean num1First = false;
+      private boolean num2First = false;
       public calculator() {
             setTitle("Calculator");
             setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -42,6 +43,7 @@ public class calculator extends JFrame {
                   buttons[i].setForeground(Color.white);
                   String caption = captions[i];
                   buttonPanel.add(buttons[i]);
+		  buttons[i].addActionListener(e -> onButtonClick(caption));
 
             }
 
@@ -59,6 +61,67 @@ public class calculator extends JFrame {
             int count = panel.getComponentCount();
             for(int i = 0; i < count; i++) {
                   panel.getComponent(i).setFont(mFont);
+            }
+      }
+     private double parseStringNumber(String value) {
+            try {
+                  return mFormat.parse(value).doubleValue();
+            } catch(Exception ex) {
+                  return 0;
+            }
+      }
+      private void onButtonClick(String caption) {
+            switch(caption) {
+                  case "C":
+
+
+                  case "DEL":
+
+                  case "0":
+                  case "1":
+                  case "2":
+                  case "3":
+                  case "4":
+                  case "5":
+                  case "6":
+                  case "7":
+                  case "8":
+                  case "9":
+                        Clicknum(caption);
+                        break;
+                  case ".":
+
+                  case "+/-":
+
+                  case "+":
+                  case "-":
+                  case "x":
+                  case "/":
+                  case "MOD":
+
+                  case "=":
+
+            }
+      }
+      private void Clicknum(String value) {
+            //ถ้าต้องใส่เพื่อเป็นเลขตัวแรก ให้ใส่แทนที่เลขเดิมลงไปเลย
+            String text = mTextValue.getText();
+            if(num1First || num2First) {
+                  mTextValue.setText(value);
+                  num1First = false;
+                  num2First = false;
+                  //เขียนแทนที่เลข 0 นั้น
+            } else if(text.equals("0")) {
+                  mTextValue.setText(value);
+            } else if(text.equals("-0")) {
+                  mTextValue.setText("-" + value);
+            }
+            //นำเลขนั้นไปต่อท้าย
+            else {
+                  String t = mTextValue.getText() + value;
+                  double v = parseStringNumber(t);
+                  t = mFormat.format(v);
+                  mTextValue.setText(t);
             }
       }
 }
