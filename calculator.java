@@ -78,7 +78,8 @@ public class calculator extends JFrame {
 			clear();
                         break;
                   case "DEL":
-
+			delete();
+                        break;
                   case "0":
                   case "1":
                   case "2":
@@ -136,5 +137,20 @@ public class calculator extends JFrame {
       private void clear() {
             reset();
             mTextValue.setText("0");
+      }
+       private void delete() {
+            String text = mTextValue.getText();
+            if(text.isEmpty()) {
+                  return;
+            }
+            int length = text.length();
+            String newText = text.substring(0, length - 1);
+            if(newText.equals("-")) {
+                  mTextValue.setText("0");
+                  return;
+            }
+
+            double v = parseStringNumber(newText);
+            mTextValue.setText(mFormat.format(v));
       }
 }
