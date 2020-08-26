@@ -109,7 +109,8 @@ public class calculator extends JFrame {
                 ClickOperator(caption);
                 break;
             case "=":
-
+                ClickEqual();
+                break;
         }
     }
     private void Clicknum(String value) {
@@ -205,5 +206,16 @@ public class calculator extends JFrame {
 
         //คลิกเครื่องหมาย รับค่าที่ 2
         num2First = true;
+    }
+    private void ClickEqual() {
+
+        if(operator.isEmpty()) {
+            return;
+        }
+
+        //การคลิกเครื่องหมาย =
+        num2 = parseTextFieldValue();
+
+        reset();
     }
 }
