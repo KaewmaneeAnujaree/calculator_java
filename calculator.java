@@ -12,6 +12,7 @@ public class calculator extends JFrame {
     private boolean num2First = false;
     private double num1 = 0;
     private double num2 = 0;
+    private String operator = "";
     public calculator() {
         setTitle("Calculator");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -57,7 +58,10 @@ public class calculator extends JFrame {
         mTextValue.requestFocus();
     }
 
+    private double parseTextFieldValue() {
 
+        return parseStringNumber(mTextValue.getText().toString());
+    }
 
     private void btFont(JPanel panel) {
         int count = panel.getComponentCount();
@@ -102,7 +106,8 @@ public class calculator extends JFrame {
             case "x":
             case "/":
             case "MOD":
-
+                ClickOperator(caption);
+                break;
             case "=":
 
         }
@@ -177,5 +182,28 @@ public class calculator extends JFrame {
             text = "-" + text;
         }
         mTextValue.setText(text);
+    }
+
+    private void ClickOperator(String op) {
+        if(op.equals("x")) {
+            op = "*";
+        } else if(op.equals("X^Y")) {
+            op = "^";
+        } else if(op.equals("MOD")) {
+            op = "%";
+        }
+
+        if(!operator.isEmpty()) {
+            num2 = parseTextFieldValue();
+        }
+
+        operator = op;
+        //คลิกเครื่องหมาย เก็บค่าตัวเเรก
+
+        num1 = parseTextFieldValue();
+        num1First = false;
+
+        //คลิกเครื่องหมาย รับค่าที่ 2
+        num2First = true;
     }
 }
