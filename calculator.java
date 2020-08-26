@@ -93,7 +93,8 @@ public class calculator extends JFrame {
                         Clicknum(caption);
                         break;
                   case ".":
-
+ 			Clickdot();
+                        break;
                   case "+/-":
 
                   case "+":
@@ -152,5 +153,20 @@ public class calculator extends JFrame {
 
             double v = parseStringNumber(newText);
             mTextValue.setText(mFormat.format(v));
+      }
+            private void Clickdot() {
+            //ถ้าต้องใส่เพื่อเป็นเลขตัวแรก ให้ใส่ "0." ไว้รอเลขหลังจุดทศนิยม
+            if(num1First || num2First) {
+                  mTextValue.setText("0.");
+                  num1First = false;
+                  num2First = false;
+            }
+            //เดิมมีจุดอยู่แล้ว
+            else if(mTextValue.getText().toString().contains(".")) {
+                  return;
+            } else {
+                  String t = mTextValue.getText().toString() + ".";
+                  mTextValue.setText(t);
+            }
       }
 }
