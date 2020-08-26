@@ -10,6 +10,8 @@ public class calculator extends JFrame {
       private NumberFormat mFormat = NumberFormat.getNumberInstance();
       private boolean num1First = false;
       private boolean num2First = false;
+      private double num1 = 0;
+      private double num2 = 0;
       public calculator() {
             setTitle("Calculator");
             setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -73,8 +75,8 @@ public class calculator extends JFrame {
       private void onButtonClick(String caption) {
             switch(caption) {
                   case "C":
-
-
+			clear();
+                        break;
                   case "DEL":
 
                   case "0":
@@ -123,5 +125,16 @@ public class calculator extends JFrame {
                   t = mFormat.format(v);
                   mTextValue.setText(t);
             }
+      }
+            private void reset() {
+            num1 = 0;
+            num2 = 0;
+            num1First= false;
+            num2First = false;
+
+      }
+      private void clear() {
+            reset();
+            mTextValue.setText("0");
       }
 }
