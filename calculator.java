@@ -11,7 +11,6 @@ public class calculator extends JFrame {
       private boolean num1First = false;
       private boolean num2First = false;
       private String operator = "";
-      private double mMemory = 0;
       private JTextField mTextValue = new JTextField("0", 15);
       private NumberFormat mFormat = NumberFormat.getNumberInstance();
       public calculator() {
@@ -153,7 +152,7 @@ public class calculator extends JFrame {
             mTextValue.setText(mFormat.format(v));
       }
 
-      private void clickDot() {
+      private void clickDot() {=
             //ถ้าต้องใส่เพื่อเป็นเลขตัวแรก ให้ใส่ "0." ไว้รอเลขหลังจุดทศนิยม
             if(num1First || num2First) {
                   mTextValue.setText("0.");
@@ -180,8 +179,6 @@ public class calculator extends JFrame {
       private void ClickOperator(String op) {
             if(op.equals("x")) {
                   op = "*";
-            } else if(op.equals("X^Y")) {
-                  op = "^";
             } else if(op.equals("MOD")) {
                   op = "%";
             }
