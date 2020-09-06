@@ -126,6 +126,21 @@ public class calculator extends JFrame {
                   mTextValue.setText(t);
             }
       }
+      private void clickDot() {
+            //ถ้าต้องใส่เพื่อเป็นเลขตัวแรก ให้ใส่ "0." ไว้รอเลขหลังจุดทศนิยม
+            if(num1First || num2First) {
+                  mTextValue.setText("0.");
+                  num1First = false;
+                  num2First = false;
+            }
+            //เดิมมีจุดอยู่แล้ว
+            else if(mTextValue.getText().toString().contains(".")) {
+                  return;
+            } else {
+                  String t = mTextValue.getText().toString() + ".";
+                  mTextValue.setText(t);
+            }
+      }
       private void reset() {
             num1 = 0;
             num2 = 0;
@@ -152,21 +167,7 @@ public class calculator extends JFrame {
             mTextValue.setText(mFormat.format(v));
       }
 
-      private void clickDot() {=
-            //ถ้าต้องใส่เพื่อเป็นเลขตัวแรก ให้ใส่ "0." ไว้รอเลขหลังจุดทศนิยม
-            if(num1First || num2First) {
-                  mTextValue.setText("0.");
-                  num1First = false;
-                  num2First = false;
-            }
-            //เดิมมีจุดอยู่แล้ว
-            else if(mTextValue.getText().toString().contains(".")) {
-                  return;
-            } else {
-                  String t = mTextValue.getText().toString() + ".";
-                  mTextValue.setText(t);
-            }
-      }
+
       private void ClickSwitchSign() {
             String text = mTextValue.getText().toString();
             if(text.startsWith("-")) {
